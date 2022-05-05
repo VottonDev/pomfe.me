@@ -9,9 +9,7 @@ class Videos
 
 		if(file_exists($path))
 		{
-			$files = glob($path . '/*.webm', GLOB_BRACE);
-			
-			return $files;
+            return glob($path . '/*.webm', GLOB_BRACE);
 		}
 		
 		return false;
@@ -29,7 +27,7 @@ class Videos
 
 	public function cache()
 	{
-		if(!$this->cache_exists() || ($this->cache_exists() && $this->update_cache()))
+		if(!$this->cache_exists() || ($this->update_cache()))
 		{
 			$_SESSION['videos'] = [];
 			
@@ -45,7 +43,7 @@ class Videos
 					$videoId = end($videoId);
 					$videoId = explode('.', $videoId)[0];
 
-					array_push($_SESSION['videos'], $videoId);
+					$_SESSION['videos'][] = $videoId;
 				}
 			}
 		}

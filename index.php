@@ -1,17 +1,15 @@
 <?php
-error_reporting(0);
 session_start();
 require_once 'inc/Videos.php';
 require_once 'inc/Redirect.php';
-require_once 'inc/Url.php';
 
 $videos = new Videos;
 
 $videos->cache();
 
-$title = strval($_SESSION['file_count']) . ' webms';
+$title = $_SESSION['file_count'] . ' webms';
 
-if(!isset($_GET['videoId']) || empty($_GET['videoId']))
+if(empty($_GET['videoId']))
 {
     $videoId = $videos->random();
 
@@ -20,7 +18,7 @@ if(!isset($_GET['videoId']) || empty($_GET['videoId']))
         Redirect(Url());
     }
     
-    Redirect(Url() . '' . $videoId);
+    Redirect(Url() . $videoId);
 }
 else
 {
